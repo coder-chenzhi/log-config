@@ -1,0 +1,41 @@
+# 32 changes
+
+65da10218e, Owen O'Malley, 2008-09-02 23:58:59 +0000, HADOOP-3601. Add a new contrib module for Hive, which is a sql-like query processing tool that uses map/reduce. (Ashish Thusoo via omalley)
+1d0c6ee614, Dhruba Borthakur, 2008-12-31 00:53:38 +0000, HIVE-196. Two test runs can run simultaneously on the same machine. (Ashish Thusoo via dhruba)
+f1273c66ed, Namit Jain, 2009-04-14 22:54:39 +0000, HIVE-266. Use Text instead of String (Zheng Shao via namit)
+f40f47dd7a, Namit Jain, 2009-07-03 05:09:52 +0000, HIVE-603. list of maps and vice versa (Zheng Shao via namit)
+25412190ff, Namit Jain, 2009-08-04 23:10:53 +0000, HIVE-487. Make hive compatibale with hadoop 20 (Todd Lipcon via namit)
+eac32e4646, Namit Jain, 2010-01-15 19:43:57 +0000, HIVE-1046. Pass build.dir.hive and other properties to subant (Zheng Shao via namit)
+954e91a9a8, Ashutosh Chauhan, 2012-04-17 18:03:04 +0000, HIVE-2930 [jira] Add license to the Hive files (Owen O'Malley via Ashutosh Chauhan)
+3058189734, Ashutosh Chauhan, 2013-02-27 07:21:50 +0000, HIVE-3428 : Fix log4j configuration errors when running hive on hadoop23 (Gunther Hagleitner via Ashutosh Chauhan)
+2178820ab4, Ashutosh Chauhan, 2013-10-31 00:51:09 +0000, HIVE-5670 : annoying ZK exceptions are annoying (Sergey Shelukhin via Ashutosh Chauhan)
+8018e513e4, Brock Noland, 2013-10-31 18:27:31 +0000, HIVE-5610 - Merge maven branch into trunk (patch)
+176e3af048, Brock Noland, 2013-10-31 18:41:45 +0000, HIVE-5610 - Merge maven branch into trunk (maven rollforward)
+bfa98f0d1c, Brock Noland, 2013-11-07 16:06:24 +0000, HIVE-5752 - log4j properties appear to have been lost in maven upgrade (Sergey Shelukhin via Brock Noland)
+d1f55b912c, Navis Ryu, 2014-10-21 06:48:11 +0000, HIVE-8186 : Self join may fail if one side has virtual column(s) and other doesn't (Navis reviewed by Sergey Shelukhin)
+bc58111d18, Sushanth Sowmyan, 2014-12-05 23:45:56 +0000, HIVE-9001 : Ship with log4j.properties file that has a reliable time based rolling policy (Hari Sankar Sivarama Subramaniyan via Sushanth Sowmyan)
+f48314d528, Brock Noland, 2014-11-28 04:59:50 +0000, HIVE-8836 - Enable automatic tests with remote spark client [Spark Branch]
+251eaf33da, Brock Noland, 2015-02-11 15:48:33 +0000, HIVE-9612 - Turn off DEBUG logging for Lazy Objects for tests (Sergio via Brock/Szehon)
+dcffbbd13a, Thejas Nair, 2015-04-10 17:37:37 +0000, HIVE-10119 : Allow Log verbosity to be set in hiveserver2 session (Hari Sankar Sivarama Subramaniyan via Thejas Nair)
+
+# ==================== change from hive-log4j.properties to hive-log4j2.xml ===============================================
+
+c93d6c77e3, Prasanth Jayachandran, 2015-08-14 10:17:20 -0700, HIVE-11304: Migrate to Log4j2 from Log4j 1.x (Prasanth Jayachandran reviewed by Thejas Nair, Sergey Shelukhin)
+d307abbf10, Prasanth Jayachandran, 2015-08-14 14:01:57 -0700, HIVE-11562: Typo in hive-log4j2.xml throws unknown level exception (Prasanth Jayachandran reviewed by Sergey Shelukhin)
+0fab86c9d7, Prasanth Jayachandran, 2015-08-14 14:02:51 -0700, HIVE-11563: Perflogger loglines are repeated (Prasanth Jayachandran reviewed by Sergey Shelukhin)
+cf0481fcf2, Prasanth Jayachandran, 2015-08-14 14:04:10 -0700, HIVE-11567: Some trace logs seeped through with new log4j2 changes (Prasanth Jayachandran reviewed by Sergey Shelukhin)
+e0594099c2, Prasanth Jayachandran, 2015-08-17 13:47:09 -0700, HIVE-11575: Fix test failures in master due to log4j changes (Prasanth Jayachandran reviewed by Sergey Shelukhin)
+1fc9320f07, Prasanth Jayachandran, 2015-09-02 15:56:15 -0500, HIVE-11700: exception in logs in Tez test with new logger (Prasanth Jayachandran reviewed by Sergey Shelukhin)
+753fed62d6, Prasanth Jayachandran, 2015-09-11 12:03:12 -0500, HIVE-11751: hive-exec-log4j2.xml settings causes DEBUG messages to be generated and ignored (Prasanth Jayachandran reviewed by Sergey Shelukhin)
+917af5f1bc, Prasanth Jayachandran, 2015-09-28 19:40:05 -0500, HIVE-11923: allow qtests to run via a single client session for tez and llap (Siddharth Seth reviewed by Prasanth Jayachandran)
+
+# ==================== change from hive-log4j2.xml to hive-log4j2.properties ===============================================
+
+# data/conf/hive-log4j2.properties
+e2d9ada8d4, Prasanth Jayachandran, 2015-12-02 12:28:04 -0600, HIVE-12020: Revert log4j2 xml configuration to properties based configuration (Prasanth Jayachandran reviewed by Sergey Shelukhin)
+b870d526ed, Prasanth Jayachandran, 2016-05-06 03:08:28 -0500, HIVE-13027: Configuration changes to improve logging performance (Prasanth Jayachandran reviewed by Sergey Shelukhin)
+0415845578, Prasanth Jayachandran, 2016-06-24 00:27:47 -0700, HIVE-14079: Remove file, method and line number from pattern layout (Prasanth Jayachandran reviewed by Sergey Shelukhin)
+0e05914b46, Siddharth Seth, 2016-08-16 14:54:37 -0700, HIVE-14405. Have tests log to the console along with hive.log. (Siddharth Seth, reviewed by Ashutosh Chauhan)
+4a567f8650, Jesus Camacho Rodriguez, 2017-06-27 11:05:48 +0100, HIVE-16888: Upgrade Calcite to 1.13 and Avatica to 1.10 (Remus Rusanu and Jesus Camacho Rodriguez, reviewed by Ashutosh Chauhan)
+35139a61f2, Peter Vary, 2017-08-11 11:35:46 +0200, HIVE-17263: Reduce debug logging for S3 tables (Barna Zsombor Klara, reviewed by Sahil Takiar and Peter Vary)
+51249505c7, Prasanth Jayachandran, 2017-11-13 13:48:19 -0800, HIVE-17809: Implement per pool trigger validation and move sessions across pools (Prasanth Jayachandran reviewed by Sergey Shelukhin)

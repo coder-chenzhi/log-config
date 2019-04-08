@@ -1,0 +1,28 @@
+# 26 changes
+# assembly/src/release/conf/log4j.properties,76
+40a7d3b6a, James Strachan, 2005-12-12 17:53:59 +0000, Moved the trunk code into the trunk sub directory
+57ca31fbd, Hiram R. Chirino, 2005-12-28 19:10:15 +0000, package refactor
+42d194eb6, Hiram R. Chirino, 2005-12-28 19:42:01 +0000, doing package refactor
+68d245f4b, Hiram R. Chirino, 2006-02-09 21:41:59 +0000, Migrated to using xbean 2.2-SNAPSHOT
+5f318d3ae, Hiram R. Chirino, 2006-06-15 02:43:40 +0000, Applied http://issues.apache.org/activemq/browse/AMQ-699
+960dce70d, Hiram R. Chirino, 2006-08-21 17:08:00 +0000, http://issues.apache.org/activemq/browse/AMQ-888
+171b10894, Robert Davies, 2006-10-13 14:29:34 +0000, fix for https://issues.apache.org/activemq/browse/AMQ-927
+c3f41326e, Hiram R. Chirino, 2006-10-19 19:11:13 +0000, Adding some java keystore and truststore files so that we can configure an ssl connector out of the box.
+d778fa460, Hiram R. Chirino, 2006-10-19 23:22:50 +0000, https://issues.apache.org/activemq/browse/AMQ-997
+24984276f, James Strachan, 2007-03-09 15:52:13 +0000, Tidied up the activemq.xml file shipped in the distro. Also by default we now embded Jetty so that we can include the web console, or an out of band file transfer mechanism by default
+b0538fcc6, James Strachan, 2007-07-03 17:37:10 +0000, added support for  AMQ-1307 so that enterprise integration patterns can be used easily in the broker. For more help see the documentation: http://cwiki.apache.org/ACTIVEMQ/enterprise-integration-patterns.html
+85fc6dd26, Adrian T. Co, 2007-08-16 03:28:46 +0000, Commented out the threshold for the stdout logger, so it will use the global one.
+96fab6d4c, Hiram R. Chirino, 2009-09-17 17:02:10 +0000, Better logging configuration  - We now have a config file for jul log messages  - console logging format simplified and but expanded the logfile format so that it's easier to parse and does not truncate field values
+eac31e841, Bosanac Dejan, 2010-02-26 11:53:18 +0000, https://issues.apache.org/activemq/browse/AMQ-2547 - upgrading trunk to spring 3.0.1.RELEASE
+fe88131fc, Bosanac Dejan, 2010-10-25 16:03:07 +0000, https://issues.apache.org/activemq/browse/AMQ-2997 - camel logging level
+2306d9624, Bosanac Dejan, 2010-12-21 14:02:17 +0000, https://issues.apache.org/jira/browse/AMQ-3100 - audit logging for JMX
+7267896d5, Bosanac Dejan, 2010-12-21 15:13:33 +0000, https://issues.apache.org/jira/browse/AMQ-3100 - JMX audit improvement
+b02697193, Bosanac Dejan, 2011-01-19 13:13:50 +0000, https://issues.apache.org/jira/browse/AMQ-3100 - audit logging provide more data in audit loge event object
+f0429be6e, Bosanac Dejan, 2011-03-14 18:24:21 +0000, https://issues.apache.org/jira/browse/AMQ-3219 - add basic support for MDC and enable broker name to appear in log entries
+2b456ddbd, Bosanac Dejan, 2011-03-17 13:53:38 +0000, https://issues.apache.org/jira/browse/AMQ-3219 - more work on MDC logging
+3da9f1c6e, Bosanac Dejan, 2011-03-23 13:17:09 +0000, https://issues.apache.org/jira/browse/AMQ-3219 - add prefix to mdc keys
+7da4da047, Bosanac Dejan, 2013-02-06 09:53:07 +0000, mute jetty log
+4927c54a0, Claus Ibsen, 2014-03-29 12:27:46 +0100, AMQ-2388: Enanched log4j logger to include exact versio number.
+be24a133e, Hadrian Zbarcea, 2016-11-03 14:26:34 -0400, This closes #88 (merged as a65ac586). More file permissions fixes.
+043d1f29e, Timothy Bish, 2016-11-21 15:42:25 -0500, https://issues.apache.org/jira/browse/AMQ-6510
+8fd82ff69, gtully, 2018-03-23 14:38:11 +0000, Revert "AMQ-2388: Enanched log4j logger to include exact versio number." This appender drops nested or cause exceptions from the stack trace, the cause is kinda handy. This reverts commit 4927c54a0aa6b19995d60b8b5ab840fd8ef6eb1f.

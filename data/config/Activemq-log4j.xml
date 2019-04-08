@@ -1,0 +1,116 @@
+<!-- 
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+ -->
+<!-- 
+This file controls most of the logging in ActiveMQ which is mainly based around
+the commons logging API.
+-->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <!-- Audit log -->
+    <appender name="audit" class="org.apache.log4j.RollingFileAppender">
+        <param name="append" value="true"/>
+        <param name="file" value="${activemq.data}/audit.log"/>
+        <param name="maxBackupIndex" value="5"/>
+        <param name="maxFileSize" value="1024KB"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-5p | %m | %t%n"/>
+        </layout>
+    </appender>
+
+    <!-- Console appender -->
+    <appender name="console" class="org.apache.log4j.ConsoleAppender">
+        <param name="threshold" value="INFO"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%5p | %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- File appender -->
+    <appender name="logfile" class="org.apache.log4j.RollingFileAppender">
+        <param name="append" value="true"/>
+        <param name="file" value="${activemq.data}/activemq.log"/>
+        <param name="maxBackupIndex" value="5"/>
+        <param name="maxFileSize" value="1024KB"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d | %-5p | %m | %c | %t%n"/>
+        </layout>
+        <!-- use some of the following patterns to see MDC logging data -->
+        <!--         
+        %X{activemq.broker}
+        %X{activemq.connector}
+        %X{activemq.destination} 
+        e.g.
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d | %-20.20X{activemq.connector} | %-5p | %m | %c | %t%n"/>
+        </layout>
+        -->
+    </appender>
+    <logger name="org.apache.activemq.audit" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="audit"/>
+    </logger>
+    <logger name="org.apache.activemq.spring">
+        <level value="WARN"/>
+    </logger>
+    <logger name="org.apache.activemq.web.handler">
+        <level value="WARN"/>
+    </logger>
+    <logger name="org.springframework">
+        <level value="WARN"/>
+    </logger>
+    <logger name="org.apache.camel">
+        <level value="INFO"/>
+    </logger>
+    <logger name="org.apache.xbean">
+        <level value="WARN"/>
+    </logger>
+    <logger name="org.eclipse.jetty">
+        <level value="WARN"/>
+    </logger>
+
+    <!-- 
+    When debugging or reporting problems to the ActiveMQ team,
+    comment out the above lines and uncomment the next.
+    -->
+
+    <!-- 
+    <root>
+        <level value="DEBUG"/>
+        <appender-ref ref="console"/>
+        <appender-ref ref="logfile"/>
+    </root>
+    -->
+
+    <!-- Or for more fine grained debug logging uncomment one of these -->
+    <!-- 
+    <logger name="org.apache.activemq">
+        <level value="DEBUG"/>
+    </logger> 
+    -->
+    <!-- 
+    <logger name="org.apache.camel">
+        <level value="DEBUG"/>
+    </logger> 
+    -->
+    <root>
+        <level value="INFO"/>
+        <appender-ref ref="console"/>
+        <appender-ref ref="logfile"/>
+    </root>
+</log4j:configuration>

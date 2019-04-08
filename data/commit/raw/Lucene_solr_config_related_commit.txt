@@ -1,0 +1,32 @@
+# 22 changes
+
+# solr/example/etc/logging.properties
+7b75fed8d1, Mark Robert Miller, 2012-07-10 14:09:52 +0000, SOLR-2616: Include a sample java util logging configuration file.
+
+==================== change from solr/example/etc/logging.properties to solr/example/resources/log4j.properties ===========
+
+# solr/server/resources/log4j.properties
+612b179d09, Mark Robert Miller, 2013-03-27 14:09:38 +0000, SOLR-3706: Ship setup to log with log4j. # https://issues.apache.org/jira/browse/SOLR-3706，从JUL迁移到LOG4J
+e0cd09fe00, Mark Robert Miller, 2013-04-08 02:39:01 +0000, SOLR-4667: Our logging configuration files should set ZooKeeper logging to WARN
+b9e1537a7e, Mark Robert Miller, 2013-06-26 20:18:33 +0000, SOLR-4916: Add support to write and read Solr index files and transaction log files to and from HDFS.
+7b5c09d061, Robert Muir, 2013-07-02 13:34:12 +0000, SOLR-4977: Add option to send infostream to the logging system
+05ad610074, Timothy Potter, 2014-10-31 04:30:52 +0000, SOLR-3619: Rename 'example' dir to 'server'
+b36c68b16e, Timothy Potter, 2014-12-12 00:21:27 +0000, SOLR-6833: Examples started with bin/solr -e should use a solr.solr.home directory under the example directory instead of server/solr.
+f678ac5d9d, Noble Paul, 2015-03-24 21:01:44 +0000, SOLR-6673: MDC based logging of collection, shard, replica, core
+cfac19da39, Shalin Shekhar Mangar, 2015-04-09 13:12:29 +0000, SOLR-6673: Change default pattern for both console and file appenders
+feb1f86d84, Mark Robert Miller, 2015-05-27 13:33:32 +0000, SOLR-7590: Finish and improve MDC context logging support.
+a9dea9a983, Mikhail Khludnev, 2016-06-07 00:21:49 +0300, SOLR-8445: fix line separator in log4j.properties files
+2ef34e9e24, Jan Høydahl, 2016-09-22 01:18:27 +0200, SOLR-8186: Solr start scripts, only log to console when running in foreground
+f391d57075, Jan Høydahl, 2016-09-22 17:03:24 +0200, SOLR-6677: Reduced logging during Solr startup, moved more logs to DEBUG level
+73c2edddf0, Jan Høydahl, 2016-09-22 21:05:28 +0200, SOLR-9534: You can now set Solr's log level through environment variable SOLR_LOG_LEVEL and -q and -v options to bin/solr
+33db4de4d7, Jan Høydahl, 2016-10-14 23:19:09 +0200, SOLR-9325: solr.log is now written to $SOLR_LOGS_DIR without changing log4j.properties
+fc8c239f93, Shalin Shekhar Mangar, 2018-03-05 15:45:05 +0530, SOLR-11957: Increase MaxFileSize=32MB and MaxBackupIndex=10 for RollingFileAppender in log4j.properties
+
+# ==================== change from log4j.properties to log4j2.xml ===============================================
+# solr/server/resources/log4j2.xml
+624d128b5e, Erick Erickson, 2018-03-25 19:16:09 -0700, SOLR-7887: Upgrade Solr to use log4j2 -- log4j 1 now officially end of life
+bea6e2307b, Varun Thacker, 2018-03-26 11:20:21 -0700, SOLR-7887: Log4J2 upgrade fixes
+41a1cbe2c3, Varun Thacker, 2018-04-02 10:14:09 -0700, SOLR-7887: Fix logging filePattern to use solr.log.X format
+44015e2acd, Varun Thacker, 2018-05-28 12:11:04 -0700, SOLR-11453: Configuring slowQueryThresholdMillis logs slow requests to a separate file - solr_slow_requests.log
+8e75f393b3, Erick Erickson, 2018-08-31 20:39:05 -0700, SOLR-12055: Enable async logging by default
+3b62f23f72, Erick Erickson, 2018-09-07 22:51:50 -0700, SOLR-12055: Enable async logging by default - rollback

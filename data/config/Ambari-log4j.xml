@@ -1,0 +1,164 @@
+<!-- Copyright 2011 The Apache Software Foundation
+
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. -->
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <!-- 
+    Define some default values that can be overridden by system properties Root logger option 
+    -->
+    <!--
+    ambari.root.dir=/
+    ambari.log.dir=${ambari.root.dir}/var/log/ambari-server
+    ambari.log.file=ambari-server.log
+    ambari.config-changes.file=ambari-config-changes.log
+    ambari.alerts.file=ambari-alerts.log
+    ambari.eclipselink.file=ambari-eclipselink.log
+    ambari.audit.file=ambari-audit.log
+    ambari.dbcheck.file=ambari-server-check-database.log
+    -->
+    <!-- Direct log messages to a log file -->
+    <appender name="file" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="${ambari.log.dir}/${ambari.log.file}"/>
+        <param name="MaxBackupIndex" value="60"/>
+        <param name="MaxFileSize" value="80MB"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %5p [%t] %c{1}:%L - %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- Log config changes -->
+    <appender name="configchange" class="org.apache.log4j.FileAppender">
+        <param name="File" value="${ambari.log.dir}/${ambari.config-changes.file}"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %5p - %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- Log alert state changes -->
+    <appender name="alerts" class="org.apache.log4j.FileAppender">
+        <param name="File" value="${ambari.log.dir}/${ambari.alerts.file}"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- Log database check process -->
+    <appender name="dbcheck" class="org.apache.log4j.FileAppender">
+        <param name="File" value="${ambari.log.dir}/${ambari.dbcheck.file}"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %5p - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="dbcheckhelper" class="org.apache.log4j.FileAppender">
+        <param name="File" value="${ambari.log.dir}/${ambari.dbcheck.file}"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %5p - %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- Audit logging -->
+    <appender name="audit" class="org.apache.log4j.rolling.RollingFileAppender">
+        <rollingPolicy class="org.apache.log4j.rolling.FixedWindowRollingPolicy">
+            <param name="ActiveFileName" value="${ambari.log.dir}/${ambari.audit.file}"/>
+            <param name="FileNamePattern" value="${ambari.log.dir}/${ambari.audit.file}-%i.log.gz"/>
+            <param name="maxIndex" value="13"/>
+        </rollingPolicy>
+        <triggeringPolicy class="org.apache.log4j.rolling.SizeBasedTriggeringPolicy">
+            <param name="maxFileSize" value="50000000"/>
+        </triggeringPolicy>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%m%n"/>
+        </layout>
+    </appender>
+
+    <!-- EclipsLink -> slf4j bridge -->
+    <appender name="eclipselink" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="${ambari.log.dir}/${ambari.eclipselink.file}"/>
+        <param name="MaxBackupIndex" value="10"/>
+        <param name="MaxFileSize" value="50MB"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%m%n"/>
+        </layout>
+    </appender>
+
+    <!-- Jetty -->
+    <logger name="org.eclipse.jetty">
+        <level value="WARN"/>
+        <appender-ref ref="file"/>
+    </logger>
+
+    <!-- Jersey -->
+    <logger name="org.glassfish.jersey">
+        <level value="WARN"/>
+        <appender-ref ref="file"/>
+    </logger>
+
+    <logger name="alerts" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="alerts"/>
+    </logger>
+
+    <logger name="audit" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="audit"/>
+    </logger>
+
+    <logger name="configchange" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="configchange"/>
+    </logger>
+
+    <logger name="eclipselink" additivity="false">
+        <level value="TRACE"/>
+        <appender-ref ref="eclipselink"/>
+    </logger>
+
+    <logger name="org.apache.ambari.server.checks.DatabaseConsistencyChecker" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="dbcheck"/>
+    </logger>
+
+    <logger name="org.apache.ambari.server.checks.DatabaseConsistencyCheckHelper" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="dbcheckhelper"/>
+    </logger>
+
+    <logger name="org.apache.ambari.server.security.authorization">
+        <level value="WARN"/>
+    </logger>
+
+    <logger name="org.apache.ambari.server.security.authorization.AmbariLdapBindAuthenticator">
+        <level value="INFO"/>
+    </logger>
+
+    <logger name="org.apache.ambari.server.security.authorization.AuthorizationHelper">
+        <level value="INFO"/>
+    </logger>
+    
+    <logger name="org.apache.hadoop.yarn.client">
+        <level value="WARN"/>
+    </logger>
+
+    <root>
+        <level value="INFO"/>
+        <appender-ref ref="file"/>
+    </root>
+</log4j:configuration>

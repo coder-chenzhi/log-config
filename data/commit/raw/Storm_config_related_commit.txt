@@ -1,0 +1,44 @@
+# 32 changes
+###########################
+#### log4j2/cluster.xml ###
+###########################
+
+
+9d91adbdb, Nathan Marz, 2011-09-17 00:48:10 -0700, release commit
+1130376bc, Nathan Marz, 2011-09-24 03:33:34 -0700, fix logging to use rolling file in production, console everywhere else
+c6712a1e7, haitao.yao, 2012-01-30 13:58:35 +0800, add storm dir for logs folder to use absolute path for logs folder
+
+# ==================== change from log4j/storm.log.properties to logback/production.xml ===============================================
+
+505b79918, Jason Jackson, 2012-08-14 12:19:30 -0700, switch log4j to logback
+e37117d7a, Jason Jackson, 2012-08-15 00:02:15 -0700, switched logback history to 2 days
+2b8f5a55a, Jason Jackson, 2012-08-15 00:05:00 -0700, switched logback max history to 7 days
+5b3bec236, Jason Jackson, 2012-08-15 12:25:02 -0700, remove log4j references. change logging policy, 1GB max logs.
+5535d107f, Jason Jackson, 2012-08-15 18:47:05 -0700, upgrade to leiningen 2
+5cb7c3381, Jason Jackson, 2012-08-20 16:05:25 -0700, renamed .log extension
+96c51312a, afeng, 2013-02-12 23:43:04 -0800, Apply Thrift SASL client/server framework for authentication/authorization/audit
+f4f2cdd2d, afeng, 2013-02-20 11:46:02 -0800, authentication/authorization framework restructured
+7d4d1608f, Derek Dagit, 2013-04-30 16:24:54 -0500, access.log should rollover separately
+ef94d01d1, Philip (flip) Kromer, 2013-07-20 17:37:03 -0500, LoggingMetricsConsumer dumps metrics to log file * Added a LoggingMetricsConsumer example of a MetricsConsumer. Use it by adding 'conf.registerMetricsConsumer(LoggingMetricsConsumer.class);' when you construct your topology. * Added a dedicated appender to the example logback/cluster.xml called METRICS.   Its log format omits the class and priority since with the dedicated appender those are redu
+731a8e517, P. Taylor Goetz, 2013-12-09 16:45:13 -0500, add Apache license headers to source files
+a831984b0, Bryan Baugher, 2014-04-25 13:11:58 -0500, STORM-298: Added full path to the metric appender fileNamePattern in logback
+6e6aeb9a7, Sriharsha Chintalapani, 2014-07-20 13:32:52 -0700, STORM-279. cluster.xml doesn't take in STORM_LOG_DIR values.
+376ff8ebe, Michael Pershyn, 2014-10-23 15:29:00 +0200, STORM-540: changed log timestamp format to ISO8601 to include timezone
+0f7f77435, nothinking, 2014-12-05 16:14:19 +0900, Update cluster.xml
+
+# ==================== change from logback to log4j2 ===============================================
+
+28558b34c, Derek Dagit, 2015-05-15 14:30:34 -0500, Revert "Merge branch 'STORM-469' of https://github.com/rekhajoshm/storm into STORM-469"
+6a3cca4aa, xiajun, 2015-06-12 13:04:29 +0800, STORM-866: Use storm.log.dir instead of storm.home in log4j2 config
+6e0b56c10, xiajun, 2015-06-12 13:19:59 +0800, remove logs
+740f02ee0, caofangkun, 2015-07-17 11:35:11 +0800, STORM-945:<DefaultRolloverStrategy> element is not a policy,and should not be putted in the <Policies> element
+064ff8bb3, Sanket, 2015-10-17 23:24:05 -0500, create access logging for all daemons
+601efa5ca, Kishor Patil, 2015-11-17 16:14:56 +0000, All daemons should Async Logging to avoid locking issues
+d839d1bf8, Robert (Bobby) Evans, 2016-01-11 14:42:34 -0600, STORM-1202: Migrate APIs to org.apache.storm, but try to provide some form of backwards compatability
+dc198121f, Boyang Jerry Peng, 2016-02-02 16:53:03 -0600, [STORM-1519] - Storm syslog logging not confirming to RFC5426 3.1
+4d75ec849, Julien Nioche, 2016-03-16 11:14:24 +0000, Fix logging for LoggingMetricsConsumer STORM-584
+1362c0bc6, Jungtaek Lim, 2016-06-03 13:28:49 +0900, STORM-1723 Introduce ClusterMetricsConsumer
+5a3204610, Robert (Bobby) Evans, 2016-08-05 16:15:21 -0500, STORM-2018: Supervisor V2
+296828704, Jungtaek Lim, 2017-01-06 17:21:05 +0900, STORM-2176 Workers do not shutdown cleanly and worker hooks don't run when a topology is killed
+927f7e62e, Hugo Louro, 2017-03-15 11:48:59 -0700, Logger Output Pattern Consistent For Worker and Cluster  - Logger output pattern for integration-tests/cluster.xml Matching log42/cluster.xml  - Same logger output pattern for cluster.xml and worker.xml
+7afd6fbe4, Robert (Bobby) Evans, 2017-09-27 12:23:23 -0500, STORM-2759: Let users indicate if a blob should restart a worker

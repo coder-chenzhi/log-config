@@ -1,0 +1,11 @@
+# 9 changes
+# conf/log4j.properties
+fd9a6525, , 2008-04-30 05:25:39 +0000, adding the log4j properties as a part of commit for revision 137. The file was missed in the patch commit process.
+03c7b137, Andrew Kornev, 2008-05-08 21:55:51 +0000, Renamed ZooLog to ZooTrace. Major cleanup of tracing.
+083aaac1, Patrick D. Hunt, 2008-06-24 16:55:54 +0000, Removed unnecessary zookeeper subdir from trunk, moved subdirs up one level. See ZOOKEEPER-45
+bbda35fa, Patrick D. Hunt, 2008-06-26 16:51:37 +0000, added date/timestamp to the console output (helps debugging hudson/tests). See ZOOKEEPER-45
+2f78a574, Mahadev Konar, 2008-11-17 16:13:31 +0000, ZOOKEEPER-223. change default level in root logger to INFO. (pat via mahadev)
+f8583e17, Patrick D. Hunt, 2010-06-25 20:08:12 +0000, ZOOKEEPER-778: Add server id to message logs
+02d9be77, Mahadev Konar, 2011-02-09 23:41:17 +0000, ZOOKEEPER-980. allow configuration parameters for log4j.properties (phunt via mahadev)
+9eed31c5, Henry Robinson, 2012-03-30 01:01:35 +0000, cap space usage of default log4j rolling policy (phunt via henryr)
+38190225, Rakesh Radhakrishnan, 2015-03-01 16:45:48 +0000, ZOOKEEPER-1952 Default log directory and file name can be changed(nijel, Hari Krishna Dara via rakeshr)

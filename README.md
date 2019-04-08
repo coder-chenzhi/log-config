@@ -1,0 +1,3 @@
+- `data/`： raw data in our studies
+- `results/`: complementary results of our studies, such as the full list of all changes types
+- `tools/`: tools that we used or developed in our studies

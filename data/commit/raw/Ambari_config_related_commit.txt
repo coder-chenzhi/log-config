@@ -1,0 +1,21 @@
+# 19 changes
+# ambari-server/conf/unix/log4j.properties
+b802241f41, Jitendra Nath Pandey, 2012-08-22 23:21:16 +0000, AMBARI-676. Seperate directory for ambari-server.
+a12bb10131, Mahadev Konar, 2012-11-07 08:13:12 +0000, AMBARI-967. Enhance predicate comparison. (Tom Beerbower via mahadev)
+b87dc45ed3, Mahadev Konar, 2012-12-13 02:03:13 +0000, Merging AMBARI-666 to trunk.
+82f69585a0, Nate Cole, 2013-05-20 16:50:04 +0000, AMBARI-2147. Added config change auditing
+a3492ae027, Sumit Mohanty, 2013-07-30 10:28:00 -0700, AMBARI-2764. Improve logging when tasks fail due to timeouts. (smohanty)
+d6176141a9, Dmitry Sen, 2013-11-06 19:00:19 +0200, AMBARI-3701. Reduce logs emitted to report heartbeats from agents (Dmytro Shkvyra via dsen)
+d638d9bffa, Sumit Mohanty, 2014-10-29 09:13:06 -0700, AMBARI-8014. Tune log4j parameters to reduce logs in ambari-server when slider view is enabled
+fc17911f28, Andrew Onishuk, 2015-02-24 15:25:06 +0200, AMBARI-9768. ambari-server.log entries do not have date logged (aonishuk)
+4872d4e80a, Jonathan Hurley, 2015-03-27 13:29:41 -0400, AMBARI-10249 - Add a Log Appender for Alert State Change Events (jonathanhurley)
+c3d5cd16f1, Jonathan Hurley, 2015-08-08 22:13:17 -0400, AMBARI-12685 - EclipseLink stdout Log Statements Fill Up Disk Space (jonathanhurley)
+4761fe7c40, Vitaly Brodetskyi, 2016-02-15 14:51:36 +0200, AMBARI-15051. Improvements and fixes for database check.(vbrodetskyi)
+b57749da6d, Vitaly Brodetskyi, 2016-02-16 14:15:47 +0200, AMBARI-15087. Add log level for check database logs.(vbrodetskyi)
+18d5a69642, Andrew Onishuk, 2016-02-23 19:42:54 +0200, AMBARI-15135. [Ambari tarballs] ambari-server java-side should support running from custom root (aonishuk)
+71b4c624fb, Toader, Sebastian, 2016-03-28 13:04:17 +0200, AMBARI-15554. Ambari LDAP integration cannot handle LDAP directories with multiple entries for the same user. (stoader)
+46a34ccdee, Toader, Sebastian, 2016-03-30 20:02:27 +0200, AMBARI-15241. Basic Operational Audit Logging. (Daniel Gergely via stoader)
+4132310990, Myroslav Papirkovskyi, 2016-04-28 19:23:58 +0300, AMBARI-16187. Jersey and Jetty logs should go to server log file. (mpapirkovskyy)
+cb8dca09c7, Vitaly Brodetskyi, 2016-05-04 15:28:05 +0300, AMBARI-16094. Improvements to DB consistency check.(vbrodetskyi)
+8dfe69e9b4, kasakrisz, 2018-05-04 12:40:32 +0200, AMBARI-23667 - Cleanup/Fix Log Feeder patterns for HDP/HDF/smartsense… (#1174)
+2c25deca9b, Andrew Onishuk, 2018-05-30 11:17:08 +0300, AMBARI-23976. Ambari changes required for YARN are missing (aonishuk)

@@ -1,0 +1,14 @@
+# 12
+# conf/log4j.properties
+31ecbbf7, Andrew Bayer, 2011-08-02 16:03:58 +0000, Initial commit
+7d346a15, Andrew Bayer, 2011-08-02 16:04:16 +0000, FLUME-69: Improve collectorSink related comments and logs - Change logical node has no config message on node to DEBUG log level - Added string argument for info as StubSink argument - adding thread info to log4j log format - cleanup custom dfs sink imports - better comments/logging/Preconditions on LogicalNode, DFSEventSink, WAL man, ThiftEventAdaptor, WAL Notifier, WAL manager, SeqfileEventSink
+2fbe9ac4, Andrew Bayer, 2011-08-02 16:05:03 +0000, FLUME-350: Typo in conf/log4j.properties - Issue found by Rousseau Herve
+c937a725, Eric Sammer, 2011-09-05 21:51:02 +0000, - Drastically simplified log4j props.
+71b53d64, Eric Sammer, 2011-10-07 03:43:56 +0000, FLUME-780: Reduce default log levels for chatty libraries
+38bab7df, Eric Sammer, 2011-10-07 21:39:28 +0000, - Squelch Avro Netty log messages.
+a9dde291, Eric Sammer, 2011-12-30 21:55:52 +0000, FLUME-915: Incorrect license information in various files
+a48bbb4d, Arvind Prabhakar, 2012-04-01 22:24:16 +0000, FLUME-1073. Default log4j configuration file should have rolling policy.
+303076f2, Mike Percy, 2012-08-07 10:45:03 -0700, FLUME-1418. Improvement for Log4j configuration.
+2f90fd8b, Mike Percy, 2013-06-23 13:28:00 -0700, FLUME-1874. Ship with log4j.properties file that has a reliable time based rolling policy.
+a7f9255a, Hari Shreedharan, 2015-02-09 23:15:02 -0800, FLUME-1734. Add a Hive Sink based on Hive Streaming support.
+69c66efe, Ralph Goers, 2017-11-02 23:01:58 -0700, FLUME-2050. Upgrade to Log4j 2.10.0

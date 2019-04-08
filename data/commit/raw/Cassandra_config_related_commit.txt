@@ -1,0 +1,54 @@
+# 41 changes
+# conf/log4j.properties
+c72b9e85b6, Jonathan Ellis, 2009-03-27 02:18:11 +0000, start/stop, log4j.properties
+d800250cbc, Jonathan Ellis, 2009-06-01 15:36:59 +0000, merge from 0.3 branch
+fbe6c4a854, Jonathan Ellis, 2009-07-28 02:46:27 +0000, add config options for commitlog syncing patch by jbellis; reviewed by Jun Rao for CASSANDRA-182
+debfcf8aca, Jonathan Ellis, 2009-08-05 01:31:30 +0000, fix .properties line endings. patch by jbellis; reviewed by Jeff Hodges for CASSANDRA-111
+480650b826, Jonathan Ellis, 2009-08-11 02:09:33 +0000, fix typo breaking CompareSubcolumnsWith.  fix timeuuid compare with byte[0]. patch by jbellis; reviewed by Evan Weaver for CASSANDRA-357
+e871517c62, Eric Evans, 2009-08-24 18:40:20 +0000, updated log file location
+4a07bb1a7a, Jonathan Ellis, 2009-11-19 19:05:52 +0000, change default log level to INFO.  patch by jbellis
+214fd159d1, Eric Evans, 2009-12-22 23:53:56 +0000, merge with 0.5 branch
+1054e3e8bd, Jonathan Ellis, 2010-01-20 21:49:58 +0000, include time on default stdout log4j output.  patch by jbellis
+
+
+# conf/log4j-server.properties
+dd787f7fcb, Jonathan Ellis, 2010-04-15 18:17:42 +0000, simplify configuration file loading; rename to cassandra.xml patch by jbellis; reviewed by eevans for CASSANDRA-971
+04384943fe, Jonathan Ellis, 2010-04-21 21:05:26 +0000, convert cassandra.xml to cassandra.yaml.  patch by Todd Blose and Stu Hood for CASSANDRA-990
+b37f7156c3, Jonathan Ellis, 2010-04-22 00:58:17 +0000, snitch and log4j level tweaks.  patch by Stu Hood; reviewed by jbellis for CASSANDRA-1009
+d03ff00ec8, Jonathan Ellis, 2010-05-05 16:29:26 +0000, merge from 0.6
+101b210280, Jonathan Ellis, 2010-05-28 03:59:20 +0000, undo setting log4j root to INFO
+e5f232ed31, Eric Evans, 2010-10-18 15:57:07 +0000, actual working log4j rotation
+b17aefbcf5, Jonathan Ellis, 2010-12-22 23:53:40 +0000, check log4j configuration for changes every 10s patch by tjake; reviewed by jbellis for CASSANDRA-1525
+f65cf20a54, Jonathan Ellis, 2011-02-25 16:22:14 +0000, add some debug logging to scrub
+4c1780a385, Jonathan Ellis, 2011-02-25 16:22:35 +0000, revert log level commit
+929f430da9, Jonathan Ellis, 2011-03-09 02:42:20 +0000, add more information to scrub errors
+cb7a1e475d, Jonathan Ellis, 2011-03-09 02:42:49 +0000, revert log4j change, again
+bc54786784, Brandon Williams, 2011-07-29 14:21:06 +0000, Add asynchronous and half-sync/half-async thrift servers. Patch by Vijay Parthasarathy, reviewed by brandonwilliams for CASSANDRA-1405
+b043d68211, Brandon Williams, 2011-07-29 14:29:49 +0000, Add asynchronous and half-sync/half-async thrift servers. Patch by Vijay Parthasarathy, reviewed by brandonwilliams for CASSANDRA-1405
+5c94432b23, Jonathan Ellis, 2012-08-29 11:55:37 -0500, add request tracing patch by David Alves; reviewed by jbellis for CASSANDRA-1123
+d7ff10d829, Sylvain Lebresne, 2012-11-08 09:18:57 +0100, Separate tracing from Log4J
+
+# ==================== change from log4j to logback ==================================================================
+
+# conf/logback.xml
+29605aedd9, Dave Brosius, 2013-08-15 06:53:28 -0400, switch logging from log4j to logback patch by dbrosius reviewed by jbellis for cassandra-5883
+fe32c9744d, Dave Brosius, 2013-08-21 08:49:17 -0400, bump up duplicate log message filtering, for now
+99e3c94ed8, Dave Brosius, 2013-08-21 10:44:21 -0400, remove DuplicateMessageFilter, isn't doing what we want
+4ba8e3c556, Dave Brosius, 2013-09-17 22:09:42 -0400, fix error in logback config files, causing INFO to spew unwantedly
+1141b82d68, Dave Brosius, 2013-11-19 20:01:17 -0500, fix file logger layout to not dump stacktrace over lines
+bb60ad35bc, Jonathan Ellis, 2013-11-27 11:34:15 -0600, show how to make logback formatting match pre-2.1 default format
+379212d5de, Brandon Williams, 2014-01-10 09:31:12 -0600, Fix logback config in scripts and packaging. Patch by Michael Shuler, reviewed by brandonwilliams for CASSANDRA-6530
+48727b4ccb, Sylvain Lebresne, 2014-05-01 16:40:15 +0200, Update versions and add licenses for 2.1-beta2 release
+60be74230e, Tyler Hobbs, 2014-06-05 15:38:41 -0500, Use $CASSANDRA_HOME for default paths instead of /var
+77c40dfc49, Benedict Elliott Smith, 2015-04-03 23:22:57 +0100, Remove line numbers from default logback.xml
+184f5b3ad4, Benedict Elliott Smith, 2015-05-01 13:59:03 +0100, revert CASSANDRA-9084
+514dcd944c, Yuki Morishita, 2015-06-04 10:39:15 -0500, Add logback metrics
+4a849efeb7, Paulo Motta, 2015-09-22 22:00:23 +0200, Add a separate production debug log for troubleshooting
+e1393ec54f, Jérôme Mainaud, 2016-07-26 16:59:27 -0300, Unify STDOUT and SYSTEMLOG logback format
+5115c106db, Alex Petrov, 2016-09-30 10:00:38 +0800, Unify drain and shutdown processes
+4881d9c308, Sylvain Lebresne, 2016-11-21 17:55:12 +0100, Thrift removal
+c0aa79e545, Michael Shuler, 2018-02-14 11:42:59 -0500, CVE-2017-5929 Security vulnerability and redefine default log rotation policy.
+
+
+
+

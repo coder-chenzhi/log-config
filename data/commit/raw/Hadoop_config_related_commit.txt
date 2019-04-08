@@ -1,0 +1,43 @@
+# 41 changes
+# hadoop-common-project/hadoop-common/src/main/conf/log4j.properties
+c94ff0f240d, Owen O'Malley, 2009-05-19 04:30:38 +0000, HADOOP-4687 More moving around
+c4c122a0def, Boris Shkolnik, 2010-02-26 18:35:54 +0000, HADOOP-6586. Log authentication and authorization failures and successes for RPC
+32469f1bdff, Thomas White, 2010-06-10 23:01:33 +0000, HADOOP-6794. Move configuration and script files post split. Includes HDFS-1181, MAPREDUCE-1033.
+c35e4a94c60, Eli Collins, 2010-11-28 21:34:22 +0000, HADOOP-7052. misspelling of threshold in conf/log4j.properties. Contributed by Jingguo Yao
+5d9ed589b5e, Eli Collins, 2010-11-30 05:24:58 +0000, HADOOP-7053. wrong FSNamesystem Audit logging setting in conf/log4j.properties. Contributed by Jingguo Yao
+156083828a7, Boris Shkolnik, 2011-02-16 18:46:54 +0000, HADOOP-6970. SecurityAuth.audit should be generated under /build.
+8a2b40d0726, Suresh Srinivas, 2011-05-10 23:56:54 +0000, HADOOP-6920. Metrics instrumentation to move new metrics2 framework. Contributed by Luke Lu.
+a196766ea07, Todd Lipcon, 2011-06-12 22:00:51 +0000, HADOOP-7106. Reorganize SVN layout to combine HDFS, Common, and MR in a single tree (project unsplit)
+0f6dfeeacba, Thomas White, 2011-08-02 16:37:57 +0000, HADOOP-6671. Use maven for hadoop common builds. Contributed by Alejandro Abdelnur.
+cd7157784e5, Arun Murthy, 2011-08-25 00:14:24 +0000, HADOOP-7560. Change src layout to be heirarchical. Contributed by Alejandro Abdelnur.
+5d4f16b93c0, Arun Murthy, 2011-09-01 23:58:12 +0000, MAPREDUCE-2735. Add an applications summary log to ResourceManager. Contributed by Thomas Graves.
+f9b2197d2a7, Eli Collins, 2011-12-20 17:17:26 +0000, HADOOP-7837. no NullAppender in the log4j config. Contributed by Eli Collins
+f9fec982f7a, Eli Collins, 2012-03-27 16:32:37 +0000, HADOOP-8216. Address log4j.properties inconsistencies btw main and template dirs. Contributed by Patrick Hunt
+9b588ed924c, Eli Collins, 2012-03-29 21:00:35 +0000, HADOOP-8149. Cap space usage of default log4j rolling policy. Contributed by Patrick Hunt
+e2af2f1b87c, Eli Collins, 2012-05-11 19:21:57 +0000, HADOOP-8316. Audit logging should be disabled by default. Contributed by Eli Collins
+cc1ee7203b3, Alejandro Abdelnur, 2012-07-16 17:28:49 +0000, HADOOP-8552. Conflict: Same security.log.file for multiple users. (kkambatl via tucu)
+db71de2e11c, Suresh Srinivas, 2012-11-09 18:07:04 +0000, HDFS-4080. Add a separate logger for block state change logs to enable turning off those logs. Contributed by Kihwal Lee.
+aa14698fd6f, Arun Murthy, 2013-06-14 06:04:06 +0000, YARN-812. Set default logger for application summary logger to hadoop.root.logger. Contributed by Siddarth Seth.
+cc536fe4da7, Jason Darrell Lowe, 2013-07-18 20:41:14 +0000, MAPREDUCE-5265. History server admin service to refresh user and superuser group mappings. Contributed by Ashwin Shankar
+172d0cef690, Steve Loughran, 2013-08-19 23:49:27 +0000, HADOOP-9487 Deprecation warnings in Configuration should go to their own log or otherwise be suppressible
+6cfcd391652, Jonathan Turner Eagles, 2013-09-06 19:40:02 +0000, HADOOP-8704. add request logging to jetty/httpserver (jeagles)
+50cd2a6bed7, Andrew Wang, 2014-06-16 23:23:33 +0000, HADOOP-10666. Remove Copyright /d/d/d/d Apache Software Foundation from the source files license header. Contributed by Henry Saputra.
+24d920b80eb, Aaron T. Myers, 2014-09-15 08:27:07 -0700, HADOOP-10400. Incorporate new S3A FileSystem implementation. Contributed by Jordan Mendelson and Dave Wang.
+03a5e04d5b6, Akira Ajisaka, 2015-01-29 16:13:59 +0900, HADOOP-10525. Remove DRFA.MaxBackupIndex config from log4j.properties (aajisaka)
+bad070fe15a, Wangda Tan, 2015-04-02 17:23:20 -0700, YARN-2901. Add errors and warning metrics page to RM, NM web UI. (Varun Vasudev via wangda)
+b3ffa870034, Jason Lowe, 2015-06-05 22:38:31 +0000, MAPREDUCE-6354. ShuffleHandler should be able to log shuffle connections. Contributed by Chang Li
+a88f31ebf34, Arpit Agarwal, 2015-08-17 16:55:46 -0700, HDFS-8880. NameNode metrics logging. (Arpit Agarwal)
+524ba8708b8, Arpit Agarwal, 2015-09-03 11:14:47 -0700, HDFS-9009. Send metrics logs to NullAppender by default. (Arpit Agarwal)
+ce69c9b54c6, Vinayakumar B, 2015-09-16 00:18:29 +0530, HDFS-8953. DataNode Metrics logging (Contributed by Kanaka Kumar Avvaru)
+92c5f565fd5, Akira Ajisaka, 2016-01-19 13:31:26 +0900, HDFS-9623. Update example configuration of block state change log in log4j.properties. Contributed by Masatake Iwasaki.
+bf74dbf80dc, Sangjin Lee, 2016-06-24 14:44:15 -0700, HDFS-7959. WebHdfs logging is missing on Datanode (Kihwal Lee via sjlee)
+92fe2db540a, Akira Ajisaka, 2016-07-18 15:45:44 -0700, HADOOP-13301. Millisecond timestamp for FsShell console log and MapReduce jobsummary log. Contributed by John Zhuge.
+4db9cc70d01, Ray Chiang, 2017-03-10 16:13:31 -0800, YARN-6042. Dump scheduler and queue state information into FairScheduler DEBUG log. (Yufei Gu via rchiang)
+d49d1862a64, Daniel Templeton, 2017-03-24 11:29:20 -0700, YARN-6360. Prevent FS state dump logger from cramming other log files (Contributed by Yufei Gu via Daniel Templeton)
+f356f0f4cf2, Daniel Templeton, 2017-04-20 14:11:01 -0700, YARN-6453. fairscheduler-statedump.log gets generated regardless of service (Contributed by Yufei Gu via Daniel Templeton)
+45382bf047d, Chris Douglas, 2017-05-09 10:25:10 -0700, AuditLogger and TestAuditLogger are dead code. Contributed by Vrushali C
+49467165a57, Aaron Fabbri, 2017-09-14 09:58:17 -0700, HADOOP-14738 Remove S3N and obsolete bits of S3A; rework docs.  Contributed by Steve Loughran.
+7e58b2478ce, Akira Ajisaka, 2017-09-20 21:07:45 +0900, HADOOP-7308. Remove unused TaskLogAppender configurations from log4j.properties. Contributed by Todd Lipcon and J.Andreina.
+3f7bd467979, Steve Loughran, 2018-03-09 10:44:07 +0000, HADOOP-15277. Remove .FluentPropertyBeanIntrospector from CLI operation log output. Contributed by Steve Loughran.
+e840b4adf42, Aaron Fabbri, 2018-03-14 15:47:56 -0700, HADOOP-15278 log s3a at info. Contributed by Steve Loughran.
+2adda92de15, Owen O'Malley, 2018-04-25 19:45:00 -0700, HDFS-7240 git commit fixup

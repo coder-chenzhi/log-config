@@ -1,0 +1,468 @@
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one
+ or more contributor license agreements.  See the NOTICE file
+ distributed with this work for additional information
+ regarding copyright ownership.  The ASF licenses this file
+ to you under the Apache License, Version 2.0 (the
+ "License"); you may not use this file except in compliance
+ with the License.  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" threshold="all">
+    <!-- Define some default values that can be overridden by system properties -->
+    <!--
+        hadoop.root.logger=INFO,console
+        hadoop.log.dir=.
+        hadoop.log.file=hadoop.log
+    -->
+
+    <!-- Define the root logger to the system property "hadoop.root.logger". -->
+    <root>
+        <level value="${hadoop.root.logger:level}"/>
+        <appender-ref ref="${hadoop.root.logger:appender}"/>
+        <appender-ref ref="EventCounter"/>
+    </root>
+
+    <!-- Logging Threshold -->
+    <!-- log4j.threshold=ALL -->
+
+    <!-- Null Appender -->
+    <appender name="NullAppender" class="org.apache.log4j.varia.NullAppender"/>
+
+    <!-- Rolling File Appender - cap space usage at 5gb. -->
+    <!-- 
+        hadoop.log.maxfilesize=256MB
+        hadoop.log.maxbackupindex=20
+    -->
+    <appender name="RFA" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="${hadoop.log.dir}/${hadoop.log.file}"/>
+        <param name="MaxBackupIndex" value="${hadoop.log.maxbackupindex}"/>
+        <param name="MaxFileSize" value="${hadoop.log.maxfilesize}"/>
+        <!-- Pattern format: Date LogLevel LoggerName LogMessage -->
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %p %c: %m%n"/>
+        </layout>
+        <!-- Debugging Pattern format -->
+        <!-- 
+            <layout class="org.apache.log4j.PatternLayout">
+                <param name="ConversionPattern" value="%d{ISO8601} %-5p %c{2} (%F:%M(%L)) - %m%n"/>
+            </layout>
+        -->
+    </appender>
+
+    <!-- Daily Rolling File Appender -->
+    <appender name="DRFA" class="org.apache.log4j.DailyRollingFileAppender">
+        <!-- Rollover at midnight -->
+        <param name="DatePattern" value=".yyyy-MM-dd"/>
+        <param name="File" value="${hadoop.log.dir}/${hadoop.log.file}"/>
+        <!-- Pattern format: Date LogLevel LoggerName LogMessage -->
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %p %c: %m%n"/>
+        </layout>
+        <!-- Debugging Pattern format -->
+        <!--
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %-5p %c{2} (%F:%M(%L)) - %m%n"/>
+        </layout>
+        -->
+    </appender>
+
+    <!-- 
+        console
+        Add "console" to rootlogger above if you want to use this
+    -->
+    <appender name="console" class="org.apache.log4j.ConsoleAppender">
+        <param name="target" value="System.err"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %p %c{2}: %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- TaskLog Appender -->
+    <appender name="TLA" class="org.apache.hadoop.mapred.TaskLogAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %p %c: %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- Uncomment the following to log normal block state change
+    messages from BlockManager in NameNode. -->
+    <!-- 
+        <logger name="BlockStateChange">
+            <level value="DEBUG"/>
+        </logger> 
+    -->
+
+    <!-- Security appender -->
+    <!--
+        hadoop.security.logger=INFO,NullAppender
+        hadoop.security.log.maxfilesize=256MB
+        hadoop.security.log.maxbackupindex=20
+    -->
+    <logger name="SecurityLogger">
+        <level value="${hadoop.security.logger:level}"/>
+        <appender-ref ref="${hadoop.security.logger:appender}"/>
+    </logger>
+    <appender name="RFAS" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="${hadoop.log.dir}/${hadoop.security.log.file}"/>
+        <param name="MaxBackupIndex" value="${hadoop.security.log.maxbackupindex}"/>
+        <param name="MaxFileSize" value="${hadoop.security.log.maxfilesize}"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %p %c: %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- Daily Rolling Security appender -->
+    <appender name="DRFAS" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="DatePattern" value=".yyyy-MM-dd"/>
+        <param name="File" value="${hadoop.log.dir}/${hadoop.security.log.file}"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %p %c: %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- 
+    hadoop configuration logging
+    Uncomment the following line to turn off configuration deprecation warnings -->
+    <!-- 
+        <logger name="org.apache.hadoop.conf.Configuration.deprecation">
+            <level value="WARN"/>
+        </logger>
+    -->
+
+    <!-- hdfs audit logging -->
+    <!--
+        hdfs.audit.logger=INFO,NullAppender
+        hdfs.audit.log.maxfilesize=256MB
+        hdfs.audit.log.maxbackupindex=20
+    -->
+    <logger name="org.apache.hadoop.hdfs.server.namenode.FSNamesystem.audit" additivity="false">
+        <level value="${hdfs.audit.logger:level}"/>
+        <appender-ref ref="${hdfs.audit.logger:appender}"/>
+    </logger>
+
+    <appender name="RFAAUDIT" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="${hadoop.log.dir}/hdfs-audit.log"/>
+        <param name="MaxBackupIndex" value="${hdfs.audit.log.maxbackupindex}"/>
+        <param name="MaxFileSize" value="${hdfs.audit.log.maxfilesize}"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %p %c{2}: %m%n"/>
+        </layout>
+    </appender>
+
+    <!--
+        NameNode metrics logging.
+        The default is to retain two namenode-metrics.log files up to 64MB each.
+    -->
+    <!-- namenode.metrics.logger=INFO,NullAppender -->
+    <logger name="NameNodeMetricsLog" additivity="false">
+        <level value="${namenode.metrics.logger:level}"/>
+        <appender-ref ref="${namenode.metrics.logger:appender}"/>
+    </logger>
+    <appender name="NNMETRICSRFA" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="${hadoop.log.dir}/namenode-metrics.log"/>
+        <param name="MaxBackupIndex" value="1"/>
+        <param name="MaxFileSize" value="64MB"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %m%n"/>
+        </layout>
+    </appender>
+
+    <!--
+    DataNode metrics logging.
+    The default is to retain two datanode-metrics.log files up to 64MB each.
+    -->
+    <!-- datanode.metrics.logger=INFO,NullAppender -->
+    <logger name="DataNodeMetricsLog" additivity="false">
+        <level value="${datanode.metrics.logger:level}"/>
+        <appender-ref ref="${datanode.metrics.logger:appender}"/>
+    </logger>
+    <appender name="DNMETRICSRFA" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="${hadoop.log.dir}/datanode-metrics.log"/>
+        <param name="MaxBackupIndex" value="1"/>
+        <param name="MaxFileSize" value="64MB"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- Custom Logging levels -->
+    <!-- 
+        <logger name="org.apache.hadoop.mapred.JobTracker">
+            <level value="DEBUG"/>
+        </logger>
+        <logger name="org.apache.hadoop.mapred.TaskTracker">
+            <level value="DEBUG"/>
+        </logger>
+        <logger name="org.apache.hadoop.hdfs.server.namenode.FSNamesystem.audit">
+            <level value="DEBUG"/>
+        </logger> 
+    -->
+    
+    <!-- AWS SDK & S3A FileSystem -->
+    <!-- 
+        <logger name="com.amazonaws">
+            <level value="ERROR"/>
+        </logger> 
+    -->
+    <logger name="com.amazonaws.http.AmazonHttpClient">
+        <level value="ERROR"/>
+    </logger>
+
+    <!-- 
+        <logger name="org.apache.hadoop.fs.s3a.S3AFileSystem">
+            <level value="WARN"/>
+        </logger> 
+    -->
+
+    <!-- 
+        Event Counter Appender
+        Sends counts of logging messages at different severity levels to Hadoop Metrics. 
+    -->
+    <appender name="EventCounter" class="org.apache.hadoop.log.metrics.EventCounter"/>
+
+
+    <!-- Job Summary Appender -->
+    <!--
+        Use following logger to send summary to separate file defined by
+        hadoop.mapreduce.jobsummary.log.file :
+        hadoop.mapreduce.jobsummary.logger=INFO,JSA
+    -->
+    <!--
+    hadoop.mapreduce.jobsummary.logger=${hadoop.root.logger}
+    hadoop.mapreduce.jobsummary.log.file=hadoop-mapreduce.jobsummary.log
+    hadoop.mapreduce.jobsummary.log.maxfilesize=256MB
+    hadoop.mapreduce.jobsummary.log.maxbackupindex=20
+    -->
+    <logger name="org.apache.hadoop.mapred.JobInProgress$JobSummary" additivity="false">
+        <level value="${hadoop.mapreduce.jobsummary.logger:level}"/>
+        <appender-ref ref="${hadoop.mapreduce.jobsummary.logger:appender}"/>
+    </logger>
+    <appender name="JSA" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="${hadoop.log.dir}/${hadoop.mapreduce.jobsummary.log.file}"/>
+        <param name="MaxBackupIndex" value="${hadoop.mapreduce.jobsummary.log.maxbackupindex}"/>
+        <param name="MaxFileSize" value="${hadoop.mapreduce.jobsummary.log.maxfilesize}"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %p %c{2}: %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- Uncomment the following line to enable logging of shuffle connections -->
+    <!-- 
+        <logger name="org.apache.hadoop.mapred.ShuffleHandler.audit">
+            <level value="DEBUG"/>
+        </logger> 
+    -->
+
+    <!-- Yarn ResourceManager Application Summary Log -->
+    <!--
+    # Set the ResourceManager summary log filename
+    yarn.server.resourcemanager.appsummary.log.file=rm-appsummary.log
+    # Set the ResourceManager summary log level and appender
+    yarn.server.resourcemanager.appsummary.logger=${hadoop.root.logger}
+    #yarn.server.resourcemanager.appsummary.logger=INFO,RMSUMMARY
+    -->
+    <logger name="org.apache.hadoop.yarn.server.resourcemanager.RMAppManager$ApplicationSummary" additivity="false">
+        <level value="${yarn.server.resourcemanager.appsummary.logger:level}"/>
+        <appender-ref ref="${yarn.server.resourcemanager.appsummary.logger:appender}"/>
+    </logger>
+
+    <!-- 
+        To enable AppSummaryLogging for the RM,
+        set yarn.server.resourcemanager.appsummary.logger to
+        <LEVEL>,RMSUMMARY in hadoop-env.sh 
+    -->
+
+    <!-- 
+    Appender for ResourceManager Application Summary Log
+    Requires the following properties to be set
+        - hadoop.log.dir (Hadoop Log directory)
+        - yarn.server.resourcemanager.appsummary.log.file (resource manager app summary log filename)
+        - yarn.server.resourcemanager.appsummary.logger (resource manager app summary log level and appender)
+    -->
+    <appender name="RMSUMMARY" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="${hadoop.log.dir}/${yarn.server.resourcemanager.appsummary.log.file}"/>
+        <param name="MaxBackupIndex" value="20"/>
+        <param name="MaxFileSize" value="256MB"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %p %c{2}: %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- HS audit log configs -->
+    <!-- mapreduce.hs.audit.logger=INFO,HSAUDIT -->
+    <!-- 
+        <logger name="org.apache.hadoop.mapreduce.v2.hs.HSAuditLogger">
+            <level value="${mapreduce.hs.audit.logger:level}"/>
+            <appender-ref ref="${mapreduce.hs.audit.logger:appender}"/>
+        </logger> 
+    -->
+    <!-- 
+        <appender name="HSAUDIT" class="org.apache.log4j.DailyRollingFileAppender">
+            <param name="DatePattern" value=".yyyy-MM-dd"/>
+            <param name="File" value="${hadoop.log.dir}/hs-audit.log"/>
+            <layout class="org.apache.log4j.PatternLayout">
+                <param name="ConversionPattern" value="%d{ISO8601} %p %c{2}: %m%n"/>
+            </layout>
+        </appender> 
+    -->
+
+    <!-- Http Server Request Logs -->
+    <!-- 
+        <logger name="http.requests.namenode">
+            <level value="INFO"/>
+            <appender-ref ref="namenoderequestlog"/>
+        </logger> 
+    -->
+    <!-- 
+        <appender name="namenoderequestlog" class="org.apache.hadoop.http.HttpRequestLogAppender">
+            <param name="Filename" value="${hadoop.log.dir}/jetty-namenode-yyyy_mm_dd.log"/>
+            <param name="RetainDays" value="3"/>
+        </appender> 
+    -->
+
+    <!-- 
+        <logger name="http.requests.datanode">
+            <level value="INFO"/>
+            <appender-ref ref="datanoderequestlog"/>
+        </logger> 
+    -->
+    <!-- 
+        <appender name="datanoderequestlog" class="org.apache.hadoop.http.HttpRequestLogAppender">
+            <param name="Filename" value="${hadoop.log.dir}/jetty-datanode-yyyy_mm_dd.log"/>
+            <param name="RetainDays" value="3"/>
+        </appender> 
+    -->
+
+    <!-- 
+        <logger name="http.requests.resourcemanager">
+            <level value="INFO"/>
+            <appender-ref ref="resourcemanagerrequestlog"/>
+        </logger> 
+    -->
+    <!--
+        <appender name="resourcemanagerrequestlog" class="org.apache.hadoop.http.HttpRequestLogAppender">
+            <param name="Filename" value="${hadoop.log.dir}/jetty-resourcemanager-yyyy_mm_dd.log"/>
+            <param name="RetainDays" value="3"/>
+        </appender>
+    -->
+
+    <!-- 
+        <logger name="http.requests.jobhistoryrequestlog">
+            <level value="INFO"/>
+            <appender-ref ref="jobhistoryrequestlog"/>
+        </logger> 
+    -->
+    <!--
+        <appender name="jobhistoryrequestlog" class="org.apache.hadoop.http.HttpRequestLogAppender">
+            <param name="Filename" value="${hadoop.log.dir}/jetty-jobhistory-yyyy_mm_dd.log"/>
+            <param name="RetainDays" value="3"/>
+        </appender>
+    -->
+
+    <!-- 
+        <logger name="http.requests.nodemanager">
+            <level value="INFO"/>
+            <appender-ref ref="nodemanagerrequestlog"/>
+        </logger> 
+    -->
+    <!-- 
+        <appender name="nodemanagerrequestlog" class="org.apache.hadoop.http.HttpRequestLogAppender">
+            <param name="Filename" value="${hadoop.log.dir}/jetty-nodemanager-yyyy_mm_dd.log"/>
+            <param name="RetainDays" value="3"/>
+        </appender>
+    -->
+
+    <!-- Http Server request logs for Ozone S3Gateway -->
+    <logger name="http.requests.s3gateway">
+        <level value="INFO"/>
+        <appender-ref ref="s3gatewayrequestlog"/>
+    </logger>
+    <appender name="s3gatewayrequestlog" class="org.apache.hadoop.http.HttpRequestLogAppender">
+        <param name="Filename" value="${hadoop.log.dir}/jetty-s3gateway-yyyy_mm_dd.log"/>
+        <param name="RetainDays" value="3"/>
+    </appender>
+
+    <!-- WebHdfs request log on datanodes -->
+    <!--
+    Specify -Ddatanode.webhdfs.logger=INFO,HTTPDRFA on datanode startup to direct the log to a separate file.
+    -->
+    <!-- datanode.webhdfs.logger=INFO,console -->
+    <!--
+        <logger name="datanode.webhdfs">
+            <level value="${datanode.webhdfs.logger:level}"/>
+            <appender-ref ref="${datanode.webhdfs.logger:appender}"/>
+        </logger> 
+    -->
+    <!--
+        <appender name="HTTPDRFA" class="org.apache.log4j.DailyRollingFileAppender">
+            <param name="DatePattern" value=".yyyy-MM-dd"/>
+            <param name="File" value="${hadoop.log.dir}/hadoop-datanode-webhdfs.log"/>
+            <layout class="org.apache.log4j.PatternLayout">
+                <param name="ConversionPattern" value="%d{ISO8601} %m%n"/>
+            </layout>
+        </appender>
+    -->
+
+    <!-- Appender for viewing information for errors and warnings -->
+    <!--
+        yarn.ewma.cleanupInterval=300
+        yarn.ewma.messageAgeLimitSeconds=86400
+        yarn.ewma.maxUniqueMessages=250
+    -->
+    <appender name="EWMA" class="org.apache.hadoop.yarn.util.Log4jWarningErrorMetricsAppender">
+        <param name="cleanupInterval" value="${yarn.ewma.cleanupInterval}"/>
+        <param name="maxUniqueMessages" value="${yarn.ewma.maxUniqueMessages}"/>
+        <param name="messageAgeLimitSeconds" value="${yarn.ewma.messageAgeLimitSeconds}"/>
+    </appender>
+
+    <!-- Fair scheduler requests log on state dump -->
+    <logger name="org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FairScheduler.statedump" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="FSLOGGER"/>
+    </logger>
+    <appender name="FSLOGGER" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="${hadoop.log.dir}/fairscheduler-statedump.log"/>
+        <param name="MaxBackupIndex" value="${hadoop.log.maxbackupindex}"/>
+        <param name="MaxFileSize" value="${hadoop.log.maxfilesize}"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %p %c: %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- Fair scheduler state dump -->
+    <!--
+    Use following logger to dump the state to a separate file
+    -->
+    <!--
+        <logger name="org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FairScheduler.statedump" additivity="false">
+            <level value="DEBUG"/>
+            <appender-ref ref="FSSTATEDUMP"/>
+        </logger> 
+    -->
+    <!-- 
+        <appender name="FSSTATEDUMP" class="org.apache.log4j.RollingFileAppender">
+            <param name="File" value="${hadoop.log.dir}/fairscheduler-statedump.log"/>
+            <param name="MaxBackupIndex" value="${hadoop.log.maxbackupindex}"/>
+            <param name="MaxFileSize" value="${hadoop.log.maxfilesize}"/>
+            <layout class="org.apache.log4j.PatternLayout">
+                <param name="ConversionPattern" value="%d{ISO8601} %p %c: %m%n"/>
+            </layout>
+        </appender> 
+    -->
+
+    <!-- Log levels of third-party libraries -->
+    <logger name="org.apache.commons.beanutils">
+        <level value="WARN"/>
+    </logger>
+
+</log4j:configuration>

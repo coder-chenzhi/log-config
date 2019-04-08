@@ -1,0 +1,39 @@
+# 37 changes
+# conf/log4j.properties
+6aacbfb18d, Michael Stack, 2008-02-05 06:15:44 +0000, HBASE-403 Fix build after move of hbase in svn Make it so scripts basically work again.  Make up a log4j basic properites file (currently broke). M    trunk/conf/hbase-env.sh     Put a JAVA_HOME in here.  Need to set it here now instead of up in hadoop-env A    trunk/conf/log4j.properties     Basic log4j for hbase. M    trunk/bin/hbase     Made pointers up into hadoop instead point to hbase substitutions. M    trunk/bin/start-hbase.sh     Remove wait on dfs for moment.  Need to figure how to do it now     we're detached (Besides there is talk that we'd acually have the     servers come up even if they can't talk to dfs).
+359fdf6238, Michael Stack, 2008-06-01 04:42:11 +0000, HBASE-659 HLog#cacheFlushLock not cleared; hangs a region
+7e0dd33fb7, Michael Stack, 2008-06-01 05:06:52 +0000, HBASE-659 HLog#cacheFlushLock not cleared; hangs a region; revert code mistakenly committed
+bcbcbc79f4, Michael Stack, 2008-06-26 17:06:31 +0000, HBASE-714 Showing bytes in log when should be string (2)
+cbb2ba609d, Michael Stack, 2008-07-02 05:32:20 +0000, Turn off DEBUG logging on dfs -- from Rong-En Fan
+fb8e861bcf, Michael Stack, 2009-01-30 01:24:05 +0000, HBASE-1144 Store the ROOT region location in Zookeeper
+948e551a16, Michael Stack, 2009-03-20 22:42:25 +0000, HBASE-1273 ZooKeeper WARN spits out lots of useless messages
+e121a78192, Michael Stack, 2009-06-23 22:42:01 +0000, HBASE-1572 Zookeeper log4j property set to ERROR on default, same output when cluster working and not working
+d86a13dade, Michael Stack, 2009-08-27 15:50:23 +0000, HBASE-1799 deprecate o.a.h.h.rest in favor of stargate
+34dd385f1f, Michael Stack, 2009-08-27 16:28:47 +0000, HBASE-1799 deprecate o.a.h.h.rest in favor of stargate -- reverse mistaken commit of config changes
+e0bf4fb231, Michael Stack, 2009-10-12 23:58:45 +0000, HBASE-1903 Enable DEBUG by default
+467a0e726d, Michael Stack, 2010-09-18 21:56:37 +0000, HBASE-3016  Refactor zk logging in trunk; do less and and identifier to log messages to help debugging
+a3856ca945, Michael Stack, 2010-09-20 19:04:41 +0000, HBASE-3017 More log pruning
+44eab92141, Michael Stack, 2010-11-05 20:12:00 +0000, HBASE-3200 Make is so can disable DEBUG logging on HConnectionImplemenation without losing important messages
+ed119ae20d, Michael Stack, 2010-11-05 22:23:41 +0000, HBASE-3200 Make is so can disable DEBUG logging on HConnectionImplemenation without losing  -- more along same vein
+b7b4b56ff4, Jean-Daniel Cryans, 2011-05-19 21:05:13 +0000, Fixing log4j.threshhold, Gaojinchao saw it.
+57672b21a8, Gary Helmling, 2011-08-12 04:48:24 +0000, HBASE-4193  Enhance RPC debug logging with details on call contents
+2ecce6117e, Zhihong Yu, 2012-03-30 14:46:49 +0000, HBASE-5655 Cap space usage of default log4j rolling policy (Himanshu)
+1df5bcad82, Andrew Kyle Purtell, 2012-05-17 19:36:42 +0000, HBASE-6010. Security audit logger configuration for log4j
+ef1b95bab2, Michael Stack, 2012-12-19 07:52:24 +0000, HBASE-6585 Audit log messages should contain info about the higher level operation being executed
+66d90f865e, sershe, 2013-03-21 02:04:07 +0000, HBASE-7948 client doesn't need to refresh meta while the region is opening
+bc5fc44966, sershe, 2013-04-03 19:56:37 +0000, HBASE-8247 inconsistent date format in different logs makes it painful to manipulate them
+06155a70d8, Michael Stack, 2013-05-29 17:57:18 +0000, HBASE-8643 Do not log full classnames in logs, just the last two levels
+325fcaf4e1, Michael Stack, 2014-03-27 23:09:59 +0000, HBASE-10796 Set default log level as INFO
+aa101ca97e, Michael Stack, 2014-05-27 10:36:55 -0700, HBASE-9149 javadoc cleanup of to reflect .META. rename to hbase:meta (Misty Stanley-Jones)
+070e2dd89a, Ashish Singhi, 2015-01-16 08:43:58 +0530, HBASE-12831 Changing the set of vis labels a user has access to doesn't generate an audit log event
+948746ce4e, Andrey Stepachev, 2015-03-09 10:39:59 +0000, HBASE-12990 MetaScanner should be replaced by MetaTableAccessor
+f57dca5e1b, stack, 2015-03-20 09:41:48 -0700, HBASE-13198 Remove HConnectionManager (Mikhail Antonov)
+e26c4e4e67, Andrey Stepachev, 2015-03-25 23:03:18 +0000, HBASE-5238 Add a log4j category for all edits to META/ROOT
+578df6dfc0, Mikhail Antonov, 2015-03-27 21:29:51 -0700, HBASE-13252 Get rid of managed connections and connection caching
+4ce6f486d0, Sean Busbey, 2015-07-15 05:22:53 -0500, HBASE-14087 Ensure correct ASF headers for docs/code
+65a8d77433, Elliott Clark, 2016-06-17 16:32:57 -0700, HBASE-16061 Allow logging to a buffered console
+be1cdc7376, Andrew Purtell, 2017-02-27 15:55:32 -0800, HBASE-16188 Add EventCounter information to log4j properties file (Gopi Krishnan Nambiar)
+404a2883f2, Andrew Purtell, 2017-03-03 12:31:00 -0800, HBASE-17722 Metrics subsystem stop/start messages add a lot of useless bulk to operational logging
+b653d1bf05, Vikas Vishwakarma, 2017-08-05 15:14:09 +0530, HBASE-18517 limit max log message width in log4j
+330b0d05b9, Apekshit Sharma, 2017-11-13 11:42:33 -0800, HBASE-19114 Split out o.a.h.h.zookeeper from hbase-server and hbase-client
+8377873d22, Jan Hentschel, 2016-12-31 13:07:21 +0100, HBASE-12882 Log level now configurable from outside Log4j configuration
